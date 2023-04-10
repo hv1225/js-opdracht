@@ -71,12 +71,49 @@ function validateForm(){
     }
 
     if(checkEmptyField(adres, '#') != null){
-        errors.push(checkEmptyField(adres, 'Het veld adres is vereist.'));
+        errors.push(checkEmptyField(adres, 'Adres is vereist.'));
     }
+
+    if(checkEmptyField(land, '#') != null){
+        errors.push(checkEmptyField(land, 'Land is vereist.'));
+    }
+
+    if(checkEmptyField(provincie, '#') != null){
+        errors.push(checkEmptyField(provincie, 'Provincie is vereist.'));
+    }
+
+    //checking email
+    if(!validateEmail(email)){
+        errors.push('E-mailadres is niet correct.')
+    }
+
+    //checking password fields
+    if(checkEmptyField(wachtwoord, '#') != null){
+        errors.push(checkEmptyField(wachtwoord, 'Het veld wachtwoord is vereist.'));
+    }
+    else if(wachtwoord.value.length <= 7 ) {
+        errors.push('Wachtwoord moet minstens 8 karakters zijn.')
+    }
+
+    if(checkEmptyField(wachtwoordHerhaal, '#') != null){
+        errors.push(checkEmptyField(wachtwoordHerhaal, 'Het veld herhaal wachtwoord is vereist.'));
+    }
+    else if(wachtwoordHerhaal != wachtwoord) {
+        errors.push('Je wachtwoorden komen niet overeen.')
+    }
+
     
     return errors;
 }
 
 function checkEmptyField(veld, melding){
     return veld.value === '' || veld.value === null ? melding : null;
+}
+
+function validateEmail(email){
+    // https://www.simplilearn.com/tutorials/javascript-tutorial/email-validation-in-javascript
+
+    var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+    return email.value.match(validRegex) ? true : false;
 }
