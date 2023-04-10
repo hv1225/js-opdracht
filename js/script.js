@@ -41,7 +41,7 @@ form.addEventListener('submit', (e) =>
     //fill variables
     errors = validateForm();
 
-    //alert logic
+    //alerts logic
     if(errors.length > 0){
         errortext.innerText = errors.join('\n');
         error.style.visibility = "visible";
@@ -69,6 +69,10 @@ function validateForm(){
     if(checkEmptyField(gebruikersnaam, '#') != null){
         errors.push(checkEmptyField(gebruikersnaam, 'Het veld gebruikersnaam is vereist.'));
     }
+    else if( gebruikersnaam.value.charAt(0) == '.' || gebruikersnaam.value.charAt(0) == '-'){
+        //gebruikersnaam eerste karakter check
+        errors.push('Gebruikersnaam mag "-" en "." niet als eerste karakter hebben.')
+    }
 
     if(checkEmptyField(adres, '#') != null){
         errors.push(checkEmptyField(adres, 'Adres is vereist.'));
@@ -84,7 +88,7 @@ function validateForm(){
 
     //checking email
     if(!validateEmail(email)){
-        errors.push('E-mailadres is niet correct.')
+        errors.push('E-mailadres is niet correct.');
     }
 
     //checking password fields
@@ -92,14 +96,14 @@ function validateForm(){
         errors.push(checkEmptyField(wachtwoord, 'Het veld wachtwoord is vereist.'));
     }
     else if(wachtwoord.value.length <= 7 ) {
-        errors.push('Wachtwoord moet minstens 8 karakters zijn.')
+        errors.push('Wachtwoord moet minstens 8 karakters zijn.');
     }
 
     if(checkEmptyField(wachtwoordHerhaal, '#') != null){
         errors.push(checkEmptyField(wachtwoordHerhaal, 'Het veld herhaal wachtwoord is vereist.'));
     }
     else if(wachtwoordHerhaal != wachtwoord) {
-        errors.push('Je wachtwoorden komen niet overeen.')
+        errors.push('Je wachtwoorden komen niet overeen.');
     }
 
     
