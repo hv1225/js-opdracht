@@ -10,10 +10,7 @@ const provincie = document.getElementById('provincie');
 const postcode = document.getElementById('postcode');
 const nieuwsbrief = document.getElementById('nieuwsbrief');
 const voorwaarden = document.getElementById('voorwaarden');
-const bankapp = document.getElementById('bankapp');
-const overschrijving = document.getElementById('overschrijving');
-const visa = document.getElementById('visa');
-const paypal = document.getElementById('paypal');
+const betaling = document.getElementsByName('betalingRadios');
 const adres = document.getElementById('adres');
 
 //other elements
@@ -102,10 +99,12 @@ function validateForm(){
     if(checkEmptyField(wachtwoordHerhaal, '#') != null){
         errors.push(checkEmptyField(wachtwoordHerhaal, 'Het veld herhaal wachtwoord is vereist.'));
     }
-    else if(wachtwoordHerhaal != wachtwoord) {
+    else if(wachtwoordHerhaal.value != wachtwoord.value) {
         errors.push('Je wachtwoorden komen niet overeen.');
     }
 
+    //checking payment method
+    validatePayment(betalingswijzetext);
     
     return errors;
 }
@@ -120,4 +119,14 @@ function validateEmail(email){
     var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
     return email.value.match(validRegex) ? true : false;
+}
+
+function validatePayment(veld){
+    //https://www.geeksforgeeks.org/how-to-get-value-of-selected-radio-button-using-javascript/
+
+    for(i = 0; i < betaling.length; i++) {
+        if(betaling[i].checked)
+        veld.innerHTML
+                = 'Je betalingswijze is ' + betaling[i].id + '.';
+    }
 }
