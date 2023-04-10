@@ -20,12 +20,58 @@ const form = document.getElementById('form');
 const error = document.getElementById('error');
 const succes = document.getElementById('succes');
 const betalingswijze = document.getElementById('betalingswijze');
+const errortext = document.getElementById('errortext');
+const succestext = document.getElementById('succestext');
+const betalingswijzetext = document.getElementById('betalingswijzetext');
+
+//hide all alerts
+error.style.visibility = "hidden";
+succes.style.visibility = "hidden";
+betalingswijze.style.visibility = "hidden";
 
 //events
 form.addEventListener('submit', (e) =>
 {
+    e.preventDefault();
 
+    //declare needed variables
+    let errors = [];
 
+    //fill variables
+    errors = validateForm();
+
+    //alert logic
+    if(errors.length > 0){
+        errortext.innerText = errors.join('\n');
+        error.style.visibility = "visible";
+    }else{
+        error.style.visibility = "hidden";
+        succes.style.visibility = "visible";
+        succestext.innerText="Aww yeah, je werd geregistreerd.";
+    }
 })
 
 //methods
+function validateForm(){
+    let errors = [];
+
+    if (validateVoornaam() != null){
+        errors.push(validateVoornaam());
+    }
+
+    return errors;
+}
+
+function checkEmptyField(){
+
+}
+
+function validateEmail(){
+    let isValid;
+
+    return isValid;
+}
+
+function validateVoornaam(){
+    return voornaam.value === '' || voornaam.value === null ? 'Het veld voornaam is vereist.' : null;
+}
