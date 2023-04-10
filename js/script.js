@@ -14,6 +14,7 @@ const bankapp = document.getElementById('bankapp');
 const overschrijving = document.getElementById('overschrijving');
 const visa = document.getElementById('visa');
 const paypal = document.getElementById('paypal');
+const adres = document.getElementById('adres');
 
 //other elements
 const form = document.getElementById('form');
@@ -47,6 +48,7 @@ form.addEventListener('submit', (e) =>
     }else{
         error.style.visibility = "hidden";
         succes.style.visibility = "visible";
+        betalingswijze.style.visibility = "visible";
         succestext.innerText="Aww yeah, je werd geregistreerd.";
     }
 })
@@ -55,23 +57,26 @@ form.addEventListener('submit', (e) =>
 function validateForm(){
     let errors = [];
 
-    if (validateVoornaam() != null){
-        errors.push(validateVoornaam());
+    //checking for empty fields
+    if(checkEmptyField(voornaam, '#') != null){
+        errors.push(checkEmptyField(voornaam, 'Het veld voornaam is vereist.'));
     }
 
+    if(checkEmptyField(naam, '#') != null){
+        errors.push(checkEmptyField(naam, 'Het veld naam is vereist.'));
+    }
+
+    if(checkEmptyField(gebruikersnaam, '#') != null){
+        errors.push(checkEmptyField(gebruikersnaam, 'Het veld gebruikersnaam is vereist.'));
+    }
+
+    if(checkEmptyField(adres, '#') != null){
+        errors.push(checkEmptyField(adres, 'Het veld adres is vereist.'));
+    }
+    
     return errors;
 }
 
-function checkEmptyField(){
-
-}
-
-function validateEmail(){
-    let isValid;
-
-    return isValid;
-}
-
-function validateVoornaam(){
-    return voornaam.value === '' || voornaam.value === null ? 'Het veld voornaam is vereist.' : null;
+function checkEmptyField(veld, melding){
+    return veld.value === '' || veld.value === null ? melding : null;
 }
