@@ -105,6 +105,16 @@ function validateForm(){
 
     //checking payment method
     validatePayment(betalingswijzetext);
+
+    //checking post code
+    if(checkPC(postcode)){
+        errors.push('De waarde van postcode moet tussen 1000 en 9999 liggen.');
+    }
+
+    //checking terms of agreement
+    if(!voorwaarden.checked){
+        errors.push('Je moet de algemene voorwaarden accepteren.')
+    }
     
     return errors;
 }
@@ -129,4 +139,11 @@ function validatePayment(veld){
         veld.innerHTML
                 = 'Je betalingswijze is ' + betaling[i].id + '.';
     }
+}
+
+function checkPC(veld){
+    if(veld.value <1000 || veld.value >9999){
+        return true;
+    }
+    return false;
 }
