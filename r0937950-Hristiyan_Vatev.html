@@ -13,7 +13,7 @@
 <body>
     <div class="container-lg">
 
-        <div class="row justify-content-center my-5" id="form">
+        <div class="row justify-content-center my-5">
 
             <div class="text-start">
 
@@ -23,7 +23,7 @@
 
             <div class="col-lg-6">
 
-                <form>
+                <form id="form">
 
                     <div class="container-lg">
 
@@ -141,7 +141,7 @@
                                 </div>
                                 <div class="form-check">
                                     <input type="checkbox" class="form-check-input" id="voorwaarden">
-                                    <label for="voordwaarden" >Ik ga akkoord met de algemene voorwaarden.</label>
+                                    <label for="voorwaarden" >Ik ga akkoord met de algemene voorwaarden.</label>
                                 </div>
 
                             </div>
@@ -172,7 +172,7 @@
 
                         <div class="row justify-content-start">
 
-                            <button type="button" class="btn btn-primary"> Wave your magic wand </button>
+                            <button type="button" class="btn btn-primary" id="submit"> Wave your magic wand </button>
 
                         </div>
 
@@ -184,19 +184,22 @@
 
             <div class="col-lg-6" id="alerts">
 
-                <div class="alert alert-danger" role="alert">
+                <div class="alert alert-danger" role="alert" id="error">
+
                     <h4 class="alert-heading">Yikes, errors...</h4>
-                    <p id="errors"></p>
+
                 </div>
                 
-                <div class="alert alert-success" role="alert">
+                <div class="alert alert-success" role="alert" id="succes">
+                    
                     <h4 class="alert-heading">Goed gedaan!</h4>
-                    <p id="succes"></p>
+
                 </div>
 
-                <div class="alert alert-info" role="alert">
+                <div class="alert alert-info" role="alert" id="betalingswijze">
+
                     <h4 class="alert-heading">Betalingswijze</h4>
-                    <p id="betalingswijze"></p>
+
                 </div>
 
             </div>
